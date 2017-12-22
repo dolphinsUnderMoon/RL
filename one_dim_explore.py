@@ -5,6 +5,7 @@ import time
 np.random.seed(2)
 
 
+# set the hyper parameter and algorithm switching
 class config:
     num_states = 10
     actions = ['left', 'right']
@@ -16,6 +17,7 @@ class config:
     leaning_algorithm = 'sarsa'
 
 
+# build a Q-table
 def build_q_table(num_states, actions):
     q_table = pd.DataFrame(
         np.zeros((num_states, len(actions))),
@@ -133,9 +135,12 @@ def rl_sarsa():
 
 if __name__ == "__main__":
     q_table_trained = None
+
+    # check the algorithm used
     if config.leaning_algorithm == 'q-learning':
         q_table_trained = rl_q_learning()
     if config.leaning_algorithm == 'sarsa':
         q_table_trained = rl_sarsa()
+
     print("\nThe trained Q-table:")
     print(q_table_trained)
